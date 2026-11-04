@@ -85,7 +85,7 @@ export const viewport: Viewport = {
 
 // Church structured data (JSON-LD)
 const churchStructuredData = {
-  "@context": "https://schema.vercel.app",
+  "@context": "https://schema.org",
   "@type": "Church",
 
   "@id": `${siteUrl}/#church`,
