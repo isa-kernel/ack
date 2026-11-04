@@ -13,7 +13,7 @@ import {
   MapPin,
   Clock3,
   Play,
-  Heart,
+  // Heart,
   Cross,
 } from "lucide-react";
 import gsap from "gsap";
@@ -68,11 +68,12 @@ const wheelWords = [
 ];
 
 const navLinks = [
-  { label: "Home", href: "#home" },
-  { label: "Our Church", href: "#about" },
-  { label: "Ministries", href: "#ministries" },
-  { label: "Events", href: "#events" },
-  { label: "Visit Us", href: "#visit" },
+  { label: "Home", href: "/" },
+  { label: "Our Church", href: "/about" },
+  { label: "Ministries", href: "/ministries" },
+  { label: "Events", href: "/events" },
+  { label: "Gallery", href: "/gallery" },
+  { label: "Visit Us", href: "/contact" },
 ];
 
 export default function ChurchHome() {
@@ -359,21 +360,21 @@ export default function ChurchHome() {
 
         <nav className={`desktop-nav ${menuOpen ? "nav-open" : ""}`}>
           {navLinks.map((link) => (
-            <a
+            <Link
               key={link.href}
               href={link.href}
               onClick={() => setMenuOpen(false)}
             >
               {link.label}
-            </a>
+            </Link>
           ))}
-          <a
-            href="#visit"
+          <Link
+            href="/contact"
             className="nav-visit"
             onClick={() => setMenuOpen(false)}
           >
             Plan a visit <ArrowUpRight size={15} />
-          </a>
+          </Link>
         </nav>
 
         <button
