@@ -1,4 +1,3 @@
-
 "use client";
 
 import { useState } from "react";
@@ -13,11 +12,18 @@ import {
   Heart,
   Cross,
   CalendarDays,
-  // Images,
   Users,
+  Phone,
+  MessageCircle,
+  Navigation,
+  Globe,
   BookOpen,
   HandHeart,
 } from "lucide-react";
+
+import "./contactpage.css";
+
+import { church } from "@/lib/church";
 
 const images = Array.from(
   { length: 12 },
@@ -26,32 +32,25 @@ const images = Array.from(
 
 const ministries = [
   {
-    title: "Worship & Praise",
-    image: "/images/img3.jpg",
-    icon: Heart,
-    description:
-      "Worship is at the heart of our life together. We gather to praise God, pray and give thanks.",
-  },
-  {
-    title: "Fellowship",
-    image: "/images/img5.jpg",
-    icon: Users,
-    description:
-      "Growing relationships, encouraging one another and building a welcoming church family.",
-  },
-  {
-    title: "Christian Teaching",
+    title: "Sunday School",
     image: "/images/img6.jpg",
     icon: BookOpen,
     description:
-      "Growing in our understanding of Scripture and applying Christian teaching in everyday life.",
+      "A Sunday session for children from 8:30 AM to 9:45 AM, supporting their growth in faith.",
   },
   {
-    title: "Community Service",
-    image: "/images/img8.jpg",
-    icon: HandHeart,
+    title: "Teen Sessions",
+    image: "/images/img5.jpg",
+    icon: Users,
     description:
-      "Putting faith into action by caring for our neighbours and serving the wider community.",
+      "A dedicated Sunday session for teens from 8:00 AM to 10:00 AM.",
+  },
+  {
+    title: "Worship & Fellowship",
+    image: "/images/img3.jpg",
+    icon: Heart,
+    description:
+      "The church gathers for worship, prayer, teaching and fellowship during its regular services.",
   },
 ];
 
@@ -61,7 +60,7 @@ const events = [
     type: "REGULAR GATHERING",
     image: "/images/img2.jpg",
     description:
-      "Join the church family for worship, prayer, teaching and fellowship. Contact the church to confirm the current service schedule.",
+      "Join us on Sunday for one of three worship services. Sunday School and teen sessions also take place during the Sunday programme.",
   },
   {
     title: "Church Fellowship",
@@ -75,7 +74,7 @@ const events = [
     type: "ANNOUNCEMENTS",
     image: "/images/img10.jpg",
     description:
-      "Information about special services, celebrations and other church activities will be published here.",
+      "For special services, celebrations and current church announcements, contact the church directly or follow its Facebook community.",
   },
 ];
 
@@ -316,7 +315,7 @@ export function AboutPage() {
           <br />
           <em>Serving with love.</em>
         </h2>
-        <Link href="/visit" className="inner-text-link">
+        <Link href="/contact" className="inner-text-link">
           Plan a visit <ArrowRight size={17} />
         </Link>
       </section>
@@ -348,8 +347,7 @@ export function MinistriesPage() {
             Growing <em>together.</em>
           </h2>
           <p>
-            Explore some of the ways a church community can
-            worship, learn and serve together.
+            Find the regular Sunday sessions for children and teens, and join the wider church family for worship and fellowship.
           </p>
         </div>
 
@@ -381,9 +379,7 @@ export function MinistriesPage() {
         </div>
 
         <p className="content-disclaimer">
-          These are suggested ministry areas for the website.
-          The actual ministries, groups, leaders and meeting
-          schedules must be confirmed by the church.
+          Sunday School and teen session times are confirmed. Other ministry groups, leaders and meeting schedules can be added when the church provides their details.
         </p>
       </section>
     </PageShell>
@@ -408,8 +404,7 @@ export function EventsPage() {
             Moments that <em>bring us together.</em>
           </h2>
           <p>
-            Check here for gatherings, announcements and
-            special occasions.
+            Join us for the regular Sunday and Wednesday services, and stay in touch for special church announcements.
           </p>
         </div>
 
@@ -436,13 +431,56 @@ export function EventsPage() {
           ))}
         </div>
 
+        <section className="confirmed-schedule" aria-labelledby="confirmed-schedule-title">
+          <div className="confirmed-schedule-heading">
+            <span className="eyebrow">REGULAR SERVICES</span>
+            <h2 id="confirmed-schedule-title">Make time for <em>worship.</em></h2>
+            <p>These are the current regular service times shared by the church.</p>
+          </div>
+          <div className="confirmed-schedule-grid">
+            <article className="confirmed-schedule-day">
+              <span>SUNDAY</span>
+              <h3>Sunday worship</h3>
+              <ul>
+                <li><strong>First service</strong><time>7:00 AM – 9:00 AM</time></li>
+                <li><strong>Second service</strong><time>9:00 AM – 11:00 AM</time></li>
+                <li><strong>Third service</strong><time>11:30 AM – 2:00 PM</time></li>
+              </ul>
+            </article>
+            <article className="confirmed-schedule-day">
+              <span>CHILDREN & TEENS</span>
+              <h3>Growing in faith</h3>
+              <ul>
+                <li><strong>Sunday School</strong><time>8:30 AM – 9:45 AM</time></li>
+                <li><strong>Teens</strong><time>8:00 AM – 10:00 AM</time></li>
+              </ul>
+              <p className="confirmed-schedule-note">These sessions run alongside the Sunday service programme.</p>
+            </article>
+            <article className="confirmed-schedule-day">
+              <span>WEDNESDAY</span>
+              <h3>Midweek service</h3>
+              <ul>
+                <li><strong>Wednesday service</strong><time>12:00 PM – 2:00 PM</time></li>
+              </ul>
+            </article>
+          </div>
+        </section>
+
+        <section className="sermons-note">
+          <div>
+            <span className="eyebrow">LISTEN & REFLECT</span>
+            <h3>Recorded sermons</h3>
+            <p>Recorded sermons are available as part of our church’s teaching and spiritual growth. Get in touch with the church to learn more.</p>
+          </div>
+          <BookOpen size={30} aria-hidden="true" />
+        </section>
+
         <div className="announcement-panel">
           <CalendarDays size={27} />
           <div>
             <h3>Church announcements</h3>
             <p>
-              Upcoming dates and event announcements will be
-              published here once the church calendar is confirmed.
+              Special dates and event details are shared by the church as they are confirmed. Contact us or visit our Facebook community for updates.
             </p>
           </div>
           <Link href="/contact" className="button button-gold">
@@ -570,158 +608,222 @@ export function GalleryPage() {
 }
 
 export function ContactPage() {
-  const [form, setForm] = useState({
-    name: "",
-    email: "",
-    subject: "General enquiry",
-    message: "",
-  });
-
-  const [submitted, setSubmitted] = useState(false);
-
-  function update(
-    event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>
-  ) {
-    setForm({ ...form, [event.target.name]: event.target.value });
-    setSubmitted(false);
-  }
-
-  function submit(event: React.FormEvent<HTMLFormElement>) {
-    event.preventDefault();
-
-    const subject = encodeURIComponent(
-      `Church website enquiry: ${form.subject}`
-    );
-
-    const body = encodeURIComponent(
-      `Name: ${form.name}\nEmail: ${form.email}\nSubject: ${form.subject}\n\n${form.message}`
-    );
-
-    // Replace this with the church's verified email address.
-    const churchEmail = "REPLACE_WITH_CHURCH_EMAIL";
-
-    if (!churchEmail.includes("@")) {
-      setSubmitted(true);
-      return;
-    }
-
-    window.location.href = `mailto:${churchEmail}?subject=${subject}&body=${body}`;
-  }
+  const mapUrl = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(
+    church.address
+  )}`;
 
   return (
     <PageShell>
       <PageHero
-        eyebrow="WE WOULD LOVE TO HEAR FROM YOU"
+        eyebrow="WE WOULD LOVE TO WELCOME YOU"
         title="Let's"
         accent="connect."
-        description="Have a question, need directions or want to know more about our church? Get in touch."
+        description="Whether you are planning your first visit, looking for a church home, or simply want to reach out, our doors and hearts are open."
         image="/images/img1.jpg"
       />
 
-      <section className="contact-layout">
-        <div className="contact-information">
-          <span className="eyebrow">GET IN TOUCH</span>
-          <h2>
-            You're always
-            <br />
-            <em>welcome.</em>
-          </h2>
-          <p>
-            We would be glad to hear from you. Reach out with
-            an enquiry or find your way to ACK St. Stephen Karunga.
-          </p>
+      <section className="contact-section">
+        <div className="contact-intro">
+          <div className="contact-intro-copy">
+            <span className="eyebrow">A PLACE TO BELONG</span>
 
-          <div className="contact-detail">
-            <MapPin />
-            <div>
-              <strong>Our location</strong>
-              <span>Ndumberi, Kiambu County, Kenya</span>
-            </div>
+            <h2>
+              Faith grows
+              <br />
+              <em>together.</em>
+            </h2>
+
+            <p>
+              At ACK St. Stephen Karunga, we believe that
+              church is more than a building. It is a family
+              where people find faith, fellowship, encouragement
+              and a place to belong.
+            </p>
+
+            <p>
+              We would be delighted to hear from you, welcome
+              you to a service, or help you find your way to us.
+            </p>
+
+            <a
+              href={mapUrl}
+              target="_blank"
+              rel="noreferrer"
+              className="contact-directions-link"
+            >
+              Find your way to us
+              <ArrowUpRight size={18} />
+            </a>
           </div>
 
-          <div className="contact-detail">
-            <Heart />
-            <div>
-              <strong>Join our community</strong>
-              <span>We welcome visitors and new members.</span>
+          <div className="contact-location-card">
+            <div className="location-card-image">
+              <img
+                src="/images/img1.jpg"
+                alt="Welcome to ACK St. Stephen Karunga"
+              />
+
+              <div className="location-image-overlay">
+                <span>YOU ARE WELCOME HERE</span>
+                <h3>A community of faith.</h3>
+              </div>
+            </div>
+
+            <div className="location-card-footer">
+              <MapPin size={21} />
+              <div>
+                <strong>Visit our church</strong>
+                <span>{church.address}</span>
+              </div>
+              <ArrowUpRight size={19} />
             </div>
           </div>
-
-          <a
-            className="button button-gold"
-            href="https://www.google.com/maps/search/?api=1&query=ACK+St+Stephen+Karunga+Ndumberi"
-            target="_blank"
-            rel="noreferrer"
-          >
-            Get directions <ArrowUpRight size={16} />
-          </a>
         </div>
 
-        <form className="contact-form" onSubmit={submit}>
-          <span className="eyebrow">SEND AN ENQUIRY</span>
-          <h3>How can we help?</h3>
+        <div className="contact-divider">
+          <span />
+          <p>LET'S STAY CONNECTED</p>
+          <span />
+        </div>
 
-          <label>
-            Your name
-            <input
-              name="name"
-              value={form.name}
-              onChange={update}
-              placeholder="Enter your name"
-              required
-            />
-          </label>
+        <div className="contact-heading">
+          <span className="eyebrow">REACH OUT TO US</span>
+          <h2>
+            We'd love to
+            <br />
+            <em>hear from you.</em>
+          </h2>
+          <p>
+            Choose the easiest way to connect with our church.
+            We look forward to hearing from you.
+          </p>
+        </div>
 
-          <label>
-            Email address
-            <input
-              type="email"
-              name="email"
-              value={form.email}
-              onChange={update}
-              placeholder="you@example.com"
-              required
-            />
-          </label>
+        <div className="contact-methods">
 
-          <label>
-            What is this about?
-            <select
-              name="subject"
-              value={form.subject}
-              onChange={update}
+          {church.phone && (
+            <a
+              href={`tel:${church.phone}`}
+              className="contact-method-card"
             >
-              <option>General enquiry</option>
-              <option>Planning a visit</option>
-              <option>Church activities</option>
-              <option>Prayer request</option>
-              <option>Other</option>
-            </select>
-          </label>
+              <div className="contact-method-icon">
+                <Phone size={25} />
+              </div>
 
-          <label>
-            Your message
-            <textarea
-              name="message"
-              value={form.message}
-              onChange={update}
-              placeholder="Write your message..."
-              rows={5}
-              required
-            />
-          </label>
+              <span className="contact-method-label">
+                GIVE US A CALL
+              </span>
 
-          <button type="submit" className="button button-gold">
-            Prepare enquiry <ArrowUpRight size={16} />
-          </button>
+              <h3>Call the church</h3>
 
-          {submitted && (
-            <p className="form-notice">
-              The church email address has not yet been configured.
-              Please contact the church directly for now.
-            </p>
+              <p>{church.phone}</p>
+
+              <div className="contact-method-action">
+                Call us now
+                <ArrowUpRight size={17} />
+              </div>
+            </a>
           )}
-        </form>
+
+          {church.whatsappLink && (
+            <a
+              href={church.whatsappLink}
+              target="_blank"
+              rel="noreferrer"
+              className="contact-method-card contact-whatsapp"
+            >
+              <div className="contact-method-icon">
+                <MessageCircle size={25} />
+              </div>
+
+              <span className="contact-method-label">
+                LET'S CHAT
+              </span>
+
+              <h3>WhatsApp</h3>
+
+              <p>
+                Have a question? Send us a message
+                and connect with our church.
+              </p>
+
+              <div className="contact-method-action">
+                Chat on WhatsApp
+                <ArrowUpRight size={17} />
+              </div>
+            </a>
+          )}
+
+          {church.facebook && (
+            <a
+              href={church.facebook}
+              target="_blank"
+              rel="noreferrer"
+              className="contact-method-card"
+            >
+              <div className="contact-method-icon">
+                <Globe size={25} />
+              </div>
+
+              <span className="contact-method-label">
+                JOIN OUR COMMUNITY
+              </span>
+
+              <h3>Facebook</h3>
+
+              <p>
+                Follow our community and stay connected
+                with church activities and updates.
+              </p>
+
+              <div className="contact-method-action">
+                Visit our Facebook community
+                <ArrowUpRight size={17} />
+              </div>
+            </a>
+          )}
+
+        </div>
+
+        <div className="contact-visit">
+          <div className="contact-visit-icon">
+            <Heart size={30} />
+          </div>
+
+          <div className="contact-visit-content">
+            <span className="eyebrow">YOUR PLACE IS HERE</span>
+
+            <h2>
+              Come as you are.
+              <br />
+              <em>Leave encouraged.</em>
+            </h2>
+
+            <p>
+              Whether you are new to the area, exploring
+              your faith, or searching for a church family,
+              we would be honoured to welcome you.
+            </p>
+
+            <a
+              href={mapUrl}
+              target="_blank"
+              rel="noreferrer"
+              className="button button-gold"
+            >
+              <Navigation size={17} />
+              Get directions
+              <ArrowUpRight size={17} />
+            </a>
+          </div>
+
+          <div className="contact-visit-decoration">
+            <span>FAITH</span>
+            <span>FELLOWSHIP</span>
+            <span>COMMUNITY</span>
+          </div>
+        </div>
+
       </section>
     </PageShell>
   );

@@ -1,4 +1,3 @@
-
 "use client";
 
 import { useEffect, useRef, useState } from "react";
@@ -12,10 +11,14 @@ import {
   X,
   MapPin,
   Clock3,
+  CalendarDays,
+  Users,
+  BookOpen,
   Play,
   // Heart,
   Cross,
 } from "lucide-react";
+import { church } from "@/lib/church";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
@@ -413,7 +416,7 @@ export default function ChurchHome() {
           </p>
 
           <div className="hero-actions">
-            <a href="#visit" className="button button-gold">
+            <a href="/contact" className="button button-gold">
               Plan your visit <ArrowUpRight size={17} />
             </a>
             <a href="#about" className="button button-outline">
@@ -550,7 +553,7 @@ export default function ChurchHome() {
             looking for a church family, we would be glad to
             welcome you.
           </p>
-          <a href="#visit" className="text-link">
+          <a href="/contact" className="text-link">
             Come and visit us <ArrowRight size={18} />
           </a>
         </div>
@@ -568,8 +571,7 @@ export default function ChurchHome() {
             </h2>
           </div>
           <p>
-            Faith is lived together. Discover the different
-            ways we worship, connect and serve.
+            Faith is lived together. Join our worship gatherings, connect with the church family and grow in faith.
           </p>
         </div>
 
@@ -596,10 +598,87 @@ export default function ChurchHome() {
           ))}
         </div>
         <p className="content-note">
-          Ministry descriptions and categories are introductory
-          placeholders. We will update them to reflect the
-          church&apos;s actual ministries.
+          Sunday School and teen sessions are part of our Sunday programme. Contact the church for information about other ministry groups.
         </p>
+      </section>
+
+      {/* SERVICE SCHEDULE */}
+      <section className="service-experience" id="service-times">
+        <div className="service-intro">
+          <span className="eyebrow">COME WORSHIP WITH US</span>
+          <h2>
+            There is a place
+            <br />
+            <em>for you here.</em>
+          </h2>
+          <p>
+            Join us on Sundays and Wednesdays for worship, prayer, learning and fellowship.
+          </p>
+        </div>
+
+        <div className="service-main">
+          <div className="service-main-heading">
+            <div>
+              <span className="service-kicker">EVERY SUNDAY</span>
+              <h3>Sunday Worship</h3>
+            </div>
+            <CalendarDays />
+          </div>
+
+          <div className="service-times">
+            {church.services.map((service, index) => (
+              <article className="service-time-card" key={service.name}>
+                <span className="service-index">
+                  {String(index + 1).padStart(2, "0")}
+                </span>
+                <div>
+                  <h4>{service.name}</h4>
+                  <span>{service.audience}</span>
+                </div>
+                <strong>{service.time}</strong>
+              </article>
+            ))}
+          </div>
+
+          <div className="service-special">
+            <div className="service-special-item">
+              <BookOpen />
+              <div>
+                <span>CHILDREN</span>
+                <h4>{church.sundaySchool.name}</h4>
+                <p>{church.sundaySchool.time}</p>
+              </div>
+            </div>
+
+            <div className="service-special-item">
+              <Users />
+              <div>
+                <span>YOUNG PEOPLE</span>
+                <h4>{church.teens.name}</h4>
+                <p>{church.teens.time}</p>
+              </div>
+            </div>
+          </div>
+
+          <div className="service-weekday">
+            <Clock3 />
+            <div>
+              <span>MIDWEEK FELLOWSHIP</span>
+              <h4>{church.weekdayServices[0].name}</h4>
+              <p>
+                {church.weekdayServices[0].day} ·{" "}
+                {church.weekdayServices[0].time}
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div className="service-invitation">
+          <p>We look forward to welcoming you.</p>
+          <a href={church.whatsappLink} target="_blank" rel="noreferrer">
+            Ask us about visiting <span>↗</span>
+          </a>
+        </div>
       </section>
 
       {/* VISIT */}
@@ -623,7 +702,7 @@ export default function ChurchHome() {
               <Clock3 size={20} />
               <span>
                 <strong>Service times</strong>
-                <small>Contact the church for the current schedule</small>
+                <small>Sunday worship and Wednesday service</small>
               </span>
             </div>
             <div>
@@ -672,15 +751,14 @@ export default function ChurchHome() {
             <span className="play-button"><Play fill="currentColor" /></span>
           </div>
           <div className="events-feature-copy">
-            <span className="eyebrow">COMING SOON</span>
-            <h3>Events, gatherings & teaching</h3>
+            <span className="eyebrow">RECORDED SERMONS</span>
+            <h3>Teaching to reflect on</h3>
             <p>
-              Church announcements, upcoming activities and
-              recorded messages will be shared here.
+              Stay connected with church announcements and recorded sermons. Contact us to learn more about available recordings.
             </p>
-            <span className="text-link">
-              More information coming soon <ArrowRight size={18} />
-            </span>
+            <Link href="/events" className="text-link">
+              Explore church gatherings <ArrowRight size={18} />
+            </Link>
           </div>
         </div>
       </section>
@@ -698,13 +776,14 @@ export default function ChurchHome() {
         <p>
           We look forward to welcoming you.
         </p>
-        <a href="#visit" className="button button-gold">
+        <a href="/contact" className="button button-gold">
           Plan your visit <ArrowUpRight size={17} />
         </a>
         <div className="closing-cross"><Cross size={35} /></div>
       </section>
 
       {/* FOOTER */}
+
       <footer className="site-footer">
         <div className="footer-main">
           <Link href="#home" className="brand footer-brand">
@@ -730,15 +809,27 @@ export default function ChurchHome() {
             <a href="#about">Our church</a>
             <a href="#ministries">Ministries</a>
             <a href="#events">Events</a>
-            <a href="#visit">Visit us</a>
+            <a href="/contact">Visit us</a>
           </div>
         </div>
+
         <div className="footer-bottom">
           <span>© {new Date().getFullYear()} ACK St. Stephen Karunga</span>
           <span>WORSHIP · GROW · SERVE</span>
-          <span>MADE WITH CARE</span>
+          <span>
+            POWERED BY{" "}
+            <a
+              href="https://isakernel.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="footer-credit-link"
+            >
+              ISAKERNEL.COM
+            </a>
+          </span>
         </div>
       </footer>
+
     </main>
   );
 }
