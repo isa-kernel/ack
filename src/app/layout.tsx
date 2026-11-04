@@ -16,7 +16,7 @@ export const metadata: Metadata = {
     "Welcome to ACK St. Stephen Karunga, Ndumberi, Kiambu County. Join our Anglican Christian community for worship, fellowship, spiritual growth and service.",
 
   verification: {
-    google: "google-site-verification: google669e103014bbeade.html",
+    google: "google669e103014bbeade.html",
   },
 
   applicationName: "ACK St. Stephen Karunga",
