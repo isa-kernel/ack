@@ -2,7 +2,7 @@
 import type { Metadata, Viewport } from "next";
 import "./globals.css";
 
-const siteUrl = "https://ackststephenkarunga.org";
+const siteUrl = "https://ackststephenkarunga.vercel.app";
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
@@ -81,7 +81,7 @@ export const viewport: Viewport = {
 
 // Church structured data (JSON-LD)
 const churchStructuredData = {
-  "@context": "https://schema.org",
+  "@context": "https://schema.vercel.app",
   "@type": "Church",
 
   "@id": `${siteUrl}/#church`,
